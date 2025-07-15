@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanting Garden Wedding - Event Details | Evelyn Grace Events</title>
+    <style>
+        /* Re-using the main portfolio's CSS variables and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1; /* Indigo */
+            --secondary: #8b5cf6; /* Violet */
+            --accent: #06b6d4; /* Cyan */
+            --text: #1f2937; /* Dark Gray */
+            --text-light: #6b7280; /* Medium Gray */
+            --bg: #ffffff; /* White */
+            --bg-dark: #0f172a; /* Dark Blue-Gray */
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: Montserrat;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: var(--bg); /* Ensure consistent background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation - copied from main portfolio for consistent header */
+        nav {
+            position: sticky; /* Changed to sticky for sub-pages */
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05); /* Always show shadow on detail pages */
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero-like banner for event title */
+        .event-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 0 4rem; /* More padding for a grander feel */
+            text-align: center;
+            margin-top: -6rem; /* Adjust for fixed nav height */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-banner p.subtitle {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-banner::before { /* Re-using float animation */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="g"><stop offset="20%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="80%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="1000" height="1000" fill="url(%23g)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Event Details Section */
+        .event-details-section {
+            padding: 5rem 0;
+            background-color: var(--bg);
+        }
+
+        .event-overview {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Info on left, description on right */
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .event-info h2, .gallery h2, .vendor-spotlight h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .event-info ul li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .event-info ul li strong {
+            color: var(--text);
+        }
+
+        .event-description p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Image Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Fixed height for consistency */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Vendor Spotlight (optional) */
+        .vendor-spotlight {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); /* Lighter background */
+            margin-top: 4rem;
+        }
+
+        .vendor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .vendor-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .vendor-card:hover {
+            transform: scale(1.03);
+        }
+
+        .vendor-card h4 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .vendor-card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+        
+        .vendor-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .vendor-card a:hover {
+            color: var(--secondary);
+        }
+
+        /* Call to action at the bottom */
+        .event-cta {
+            text-align: center;
+            padding: 5rem 0;
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .event-cta h2 {
+            color: white; /* Override for dark background */
+            margin-bottom: 1.5rem;
+        }
+
+        .event-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        /* Back to portfolio button */
+        .back-button {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .back-button:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide nav links on smaller screens for simplicity */
+            }
+
+            .event-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .event-banner p.subtitle {
+                font-size: 1.2rem;
+            }
+
+            .event-overview {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
+            }
+
+            .gallery-grid, .vendor-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animations from main page */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Binzyn</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#testimonials">Testimonials</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="event-banner">
+        <div class="container">
+            <h1>Sự kiện 1</h1>
+            <p class="subtitle">Sự kiện đẳng cấp!</p>
+        </div>
+    </section>
+
+    <section class="event-details-section">
+        <div class="container">
+            <div class="event-overview">
+                <div class="event-info">
+                    <h2>Sự kiện đẳng cấp!</h2>
+                    <ul>
+                        <li><strong>Date:</strong> Ngày này tháng nọ</li>
+                        <li><strong>Location:</strong> Hanoi, Vietnam</li>
+                        <li><strong>Guests:</strong> Anh Nhuột</li>
+                        <li><strong>Theme:</strong> Chủ đề</li>
+                        <li><strong>Key Services:</strong> Dịch vụ</li>
+                    </ul>
+                </div>
+                <div class="event-description">
+                    <h2>Nói qua về sự kiện</h2>
+                    <p>
+                        Tôi đã rất cố gắng cho sự kiện lày!
+                    </p>
+                    <p>
+                        Bạn phải thích ló!
+                    </p>
+                </div>
+            </div>
+
+            <div class="gallery">
+                <h2>Khoảnh khắc</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/6366f1/FFFFFF?text=Wedding+Photo+1" alt="Ảnh 1"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/8b5cf6/FFFFFF?text=Wedding+Photo+2" alt="Ảnh 2"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/06b6d4/FFFFFF?text=Wedding+Photo+3" alt="Ảnh 3"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/667eea/FFFFFF?text=Wedding+Photo+4" alt="Ảnh 4"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/764ba2/FFFFFF?text=Wedding+Photo+5" alt="Ảnh 5"></div>
+                    <div class="gallery-item"><img src="https://via.placeholder.com/600x400/6366f1/FFFFFF?text=Wedding+Photo+6" alt="Ảnh 6"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vendor-spotlight">
+        <div class="container">
+            <h2 class="section-title">Hợp tác với</h2>
+            <div class="vendor-grid">
+                <div class="vendor-card">
+                    <h4>Đơn vị 1</h4>
+                    <p>Dịch vụ của họ</p>
+                    
+                </div>
+                <div class="vendor-card">
+                    <h4>Đơn vị 2</h4>
+                    <p>Dịch vụ của họ</p>
+                    
+                </div>
+                <div class="vendor-card">
+                    <h4>Đơn vị 3</h4>
+                    <p>Dịch vụ của họ</p>
+                    
+                </div>
+                <div class="vendor-card">
+                    <h4>Đơn vị 4</h4>
+                    <p>Dịch vụ của họ</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="event-cta">
+        <div class="container">
+            <h2 class="section-title">Muốn tổ chức sự kiện không?</h2>
+            <p>
+                Muốn tổ chức sự kiện đẳng cấp như thế ở trên không?
+            </p>
+            <a href="../index.html#contact" class="cta-button">Muốn thì bấm vào đây để liên lạc với chuỵ!</a>
+            <br>
+            <a href="../index.html#portfolio" class="back-button">← Về trang chính</a>
+        </div>
+    </section>
+
+    <script>
+        // No complex JS needed here, just simple smooth scrolling for nav if used
+        document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').split('#')[1];
+                const mainPage = 'index.html'; // Assume your main page is index.html
+                
+                // If it's a link to a section on the main page, navigate there and scroll
+                if (window.location.pathname.endsWith(mainPage) || window.location.pathname.endsWith('/')) {
+                    document.querySelector('#' + targetId).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    // If on a sub-page, just go back to the main page with hash
+                    window.location.href = mainPage + '#' + targetId;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
